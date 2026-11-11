@@ -1,10 +1,20 @@
 # MusicSync
 
-A simple Swift app for MacOS that helps organize loose MP3s into folders and provides a one-way sync utility to copy those folders to an external drive.  I use this to keep USB sticks up-to-date for my car audio systems.  Probably of little use to anyone these days in the era of Bluetooth and streaming, but I'm still stuck in my ways, I guess. Written entirely with Claude Code. Feel free to use/fork as you wish, but I provide no guarantees on the functionality/safety of the app :)
+A simple Swift app for MacOS that helps organize loose MP3s into folders and provides a one-way sync utility to copy those folders to an external drive.  I use this to keep USB sticks up-to-date for my car audio systems.  Probably of little use to anyone these days in the era of Bluetooth and streaming, but I'm still stuck in my ways, I guess. Written entirely with Claude Code. Feel free to use/fork as you wish, runs on Apple silicon and Intel Macs with macOS 13 or later.
 
-## Build and run
+## Download
 
-Needs the Xcode Command Line Tools (no full Xcode). Or just download the latest MusicSync.app and run it.
+Get `MusicSync.zip` from the [latest release](https://github.com/Todd1561/MusicSync/releases/latest),
+unzip it, and move `MusicSync.app` to Applications.
+
+The app is not signed with an Apple Developer ID, so macOS blocks it the first
+time. Try to open it once, then go to System Settings → Privacy & Security and
+click **Open Anyway**.
+
+## Build from source
+
+Needs the Xcode Command Line Tools (no full Xcode). `build.sh` produces
+`MusicSync.app` and `MusicSync.zip` in this folder.
 
 ```bash
 ./build.sh

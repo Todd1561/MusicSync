@@ -1,13 +1,15 @@
 #!/bin/bash
-# Builds MusicSync.app into this folder. Needs only the Xcode Command Line Tools.
+# Builds MusicSync.app (Apple silicon + Intel) and MusicSync.zip into this folder.
+# Needs only the Xcode Command Line Tools. Attach MusicSync.zip to a GitHub Release.
 set -euo pipefail
 cd "$(dirname "$0")"
 
 # Keep intermediate build files out of the cloud-synced project folder.
 SCRATCH="$HOME/Library/Caches/MusicSync-build"
 
-swift build -c release --scratch-path "$SCRATCH"
-BIN="$(swift build -c release --scratch-path "$SCRATCH" --show-bin-path)/MusicSync"
+ARCHS=(--arch arm64 --arch x86_64)
+swift build -c release --scratch-path "$SCRATCH" "${ARCHS[@]}"
+BIN="$(swift build -c release --scratch-path "$SCRATCH" "${ARCHS[@]}" --show-bin-path)/MusicSync"
 
 STAGE="$SCRATCH/MusicSync.app"
 rm -rf "$STAGE"
@@ -29,4 +31,6 @@ codesign --force --sign - "$STAGE"
 
 rm -rf MusicSync.app
 ditto "$STAGE" MusicSync.app
-echo "Built $(pwd)/MusicSync.app"
+rm -f MusicSync.zip
+ditto -c -k --norsrc --noextattr --keepParent "$STAGE" MusicSync.zip
+echo "Built $(pwd)/MusicSync.app ($(lipo -archs MusicSync.app/Contents/MacOS/MusicSync)) and MusicSync.zip"
