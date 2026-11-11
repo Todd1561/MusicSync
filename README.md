@@ -1,12 +1,10 @@
 # MusicSync
 
-One-way sync from a local folder to an external drive. After a sync the drive
-matches the source folder: new and changed files are copied, and anything on the
-drive that is not in the source is deleted. The source is only ever read.
+A simple Swift app for MacOS that helps organize loose MP3s into folders and provides a one-way sync utility to copy those folders to an external drive.  I use this to keep USB sticks up-to-date for my car audio systems.  Probably of little use to anyone these days in the era of Bluetooth and streaming, but I'm still stuck in my ways, I guess. Written entirely with Claude Code. Feel free to use/fork as you wish, but I provide no guarantees on the functionality/safety of the app :)
 
 ## Build and run
 
-Needs the Xcode Command Line Tools (no full Xcode).
+Needs the Xcode Command Line Tools (no full Xcode). Or just download the latest MusicSync.app and run it.
 
 ```bash
 ./build.sh
